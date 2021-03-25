@@ -1,18 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
+import { db } from "../config/firebaseConfig";
 import Avatar from "./Avatar";
-const ListIteem = ({
-  id,
-  chatTitle,
-  chatDesc,
-  avatarUrl,
-  avHeight,
-  avWidth,
-  enterChat,
-}) => {
+const ListIteem = ({ id, chatTitle, chatDesc, enterChat }) => {
+  const [chatMessages, setChatMessages] = useState([]);
+
+  useEffect(() => {
+    const unsubscribe = db
+      .collection("chats")
+      .doc(id)
+      .collection("messages")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) => {
+        setChatMessages(snapshot.docs.map((doc) => doc.data()));
+      });
+    return unsubscribe;
+  });
+
   return (
     <TouchableOpacity
+      key={id}
       onPress={() => enterChat(id, chatTitle)}
       style={styles.container}
       activeOpacity={0.5}
@@ -20,7 +28,10 @@ const ListIteem = ({
       <Avatar
         width={60}
         height={60}
-        url="https://pbs.twimg.com/profile_images/1362298505348456448/hWQL8hpr_400x400.jpg"
+        url={
+          chatMessages?.[0]?.photoUrl ||
+          "https://cdn.dribbble.com/users/267404/screenshots/3713416/talkup.png"
+        }
       />
 
       <View>
@@ -28,7 +39,7 @@ const ListIteem = ({
           {chatTitle}
         </Text>
         <Text numberOfLines={1} ellipsizeMode="tail">
-          {chatDesc}
+          {chatMessages?.[0].displayName}: {chatMessages?.[0]?.message}
         </Text>
       </View>
     </TouchableOpacity>
