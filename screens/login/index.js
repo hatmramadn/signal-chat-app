@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   Text,
+  ScrollView,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
@@ -35,48 +36,53 @@ const LoginScreen = ({ navigation }) => {
   }, []);
   return (
     <KeyboardAvoidingView behavior="padding" style={styles.container}>
-      <StatusBar style="light" />
-      <Image
-        style={{ height: 100, width: 100, borderRadius: 20 }}
-        source={{
-          uri:
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Signal-Logo.svg/1200px-Signal-Logo.svg.png",
-        }}
-      />
-      <TextInput
-        autoFocus
-        keyboardType="email-address"
-        placeholder="Email"
-        style={styles.textInput}
-        value={email}
-        onChangeText={(text) => setEmail(text)}
-      />
-      <TextInput
-        secureTextEntry
-        autoFocus
-        keyboardType="visible-password"
-        placeholder="Password"
-        style={styles.textInput}
-        value={password}
-        onChangeText={(text) => setpassword(text)}
-        onSubmitEditing={signIn}
-      />
-      <TouchableOpacity onPress={signIn} style={styles.button}>
-        <Text style={{ color: "white", fontWeight: "bold", fontSize: 16 }}>
-          Login
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => navigation.navigate("Register")}
-        style={styles.buttonBordered}
-      >
-        <Text
-          style={{ color: colors.mainColor, fontWeight: "bold", fontSize: 16 }}
+      <ScrollView>
+        <StatusBar style="light" />
+        <Image
+          style={{ height: 100, width: 100, borderRadius: 20 }}
+          source={{
+            uri:
+              "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Signal-Logo.svg/1200px-Signal-Logo.svg.png",
+          }}
+        />
+        <TextInput
+          autoFocus
+          keyboardType="email-address"
+          placeholder="Email"
+          style={styles.textInput}
+          value={email}
+          onChangeText={(text) => setEmail(text)}
+        />
+        <TextInput
+          secureTextEntry
+          autoFocus
+          placeholder="Password"
+          style={styles.textInput}
+          value={password}
+          onChangeText={(text) => setpassword(text)}
+          onSubmitEditing={signIn}
+        />
+        <TouchableOpacity onPress={signIn} style={styles.button}>
+          <Text style={{ color: "white", fontWeight: "bold", fontSize: 16 }}>
+            Login
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Register")}
+          style={styles.buttonBordered}
         >
-          Register
-        </Text>
-      </TouchableOpacity>
-      <View style={{ height: 100 }}></View>
+          <Text
+            style={{
+              color: colors.mainColor,
+              fontWeight: "bold",
+              fontSize: 16,
+            }}
+          >
+            Register
+          </Text>
+        </TouchableOpacity>
+        <View style={{ height: 5 }}></View>
+      </ScrollView>
     </KeyboardAvoidingView>
   );
 };

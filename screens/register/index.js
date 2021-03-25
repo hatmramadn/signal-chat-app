@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   Text,
+  ScrollView,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
@@ -42,49 +43,51 @@ const RegisterScreen = () => {
   };
   return (
     <KeyboardAvoidingView behavior="padding" style={styles.container}>
-      <StatusBar style="light" />
-      <Image
-        style={{ height: 100, width: 100, borderRadius: 20 }}
-        source={{
-          uri:
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Signal-Logo.svg/1200px-Signal-Logo.svg.png",
-        }}
-      />
-      <TextInput
-        autoFocus
-        placeholder="Enter Full Name"
-        style={styles.textInput}
-        value={name}
-        onChangeText={(text) => setName(text)}
-      />
-      <TextInput
-        keyboardType="email-address"
-        placeholder="Email"
-        style={styles.textInput}
-        value={email}
-        onChangeText={(text) => setEmail(text)}
-      />
-      <TextInput
-        secureTextEntry
-        keyboardType="visible-password"
-        placeholder="Password"
-        style={styles.textInput}
-        value={password}
-        onChangeText={(text) => setpassword(text)}
-      />
-      <TextInput
-        placeholder="Profile picture url *optional"
-        style={styles.textInput}
-        value={imgUrl}
-        onChangeText={(text) => setimgUrl(text)}
-        onSubmitEditing={register}
-      />
-      <TouchableOpacity onPress={register} style={styles.button}>
-        <Text style={{ color: "white", fontWeight: "bold", fontSize: 16 }}>
-          Register
-        </Text>
-      </TouchableOpacity>
-      <View style={{ height: 100 }}></View>
+      <ScrollView>
+        <StatusBar style="light" />
+        <Image
+          style={{ height: 100, width: 100, borderRadius: 20 }}
+          source={{
+            uri:
+              "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Signal-Logo.svg/1200px-Signal-Logo.svg.png",
+          }}
+        />
+        <TextInput
+          autoFocus
+          placeholder="Enter Full Name"
+          style={styles.textInput}
+          value={name}
+          onChangeText={(text) => setName(text)}
+        />
+        <TextInput
+          keyboardType="email-address"
+          placeholder="Email"
+          style={styles.textInput}
+          value={email}
+          onChangeText={(text) => setEmail(text)}
+        />
+        <TextInput
+          secureTextEntry
+          keyboardType="visible-password"
+          placeholder="Password"
+          style={styles.textInput}
+          value={password}
+          onChangeText={(text) => setpassword(text)}
+        />
+        <TextInput
+          placeholder="Profile picture url *optional"
+          style={styles.textInput}
+          value={imgUrl}
+          onChangeText={(text) => setimgUrl(text)}
+          onSubmitEditing={register}
+        />
+        <TouchableOpacity onPress={register} style={styles.button}>
+          <Text style={{ color: "white", fontWeight: "bold", fontSize: 16 }}>
+            Register
+          </Text>
+        </TouchableOpacity>
+        <View style={{ height: 20 }}></View>
+      </ScrollView>
     </KeyboardAvoidingView>
   );
 };

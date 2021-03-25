@@ -51,7 +51,7 @@ export default StyleSheet.create({
   reciver: {
     position: "relative",
     alignSelf: "flex-end",
-    paddingHorizontal: 40,
+    paddingHorizontal: 50,
     paddingVertical: 20,
     backgroundColor: "#0046ff",
     marginHorizontal: 20,

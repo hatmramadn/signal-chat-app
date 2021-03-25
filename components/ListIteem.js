@@ -39,7 +39,7 @@ const ListIteem = ({ id, chatTitle, chatDesc, enterChat }) => {
           {chatTitle}
         </Text>
         <Text numberOfLines={1} ellipsizeMode="tail">
-          {chatMessages?.[0].displayName}: {chatMessages?.[0]?.message}
+          {chatMessages?.[0]?.displayName}: {chatMessages?.[0]?.message}
         </Text>
       </View>
     </TouchableOpacity>
